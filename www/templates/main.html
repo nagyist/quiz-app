@@ -1,0 +1,29 @@
+<ion-view title="Quiz">
+  <ion-content>
+
+    <div class="card" ng-repeat="question in questions track by $index" ng-if="question.visible" ng-init="question.disable = true">
+      <div class="item item-divider">
+        Question {{question.id}}
+      </div>
+      <div class="item item-text-wrap">
+        <h2>{{question.question_title}}</h2>
+      </div>
+      <div class="padding-left padding-right padding-bottom">
+        <button grouped-radio="1" ng-model="question.answer" class="button button-block button-small" ng-class="setClass(question,1)" ng-click="submitEnable(question)">{{question.choice_1}}</button>
+        <button grouped-radio="2" ng-model="question.answer" class="button button-block button-small" ng-class="setClass(question,2)" ng-click="submitEnable(question)">{{question.choice_2}}</button>
+        <button grouped-radio="3" ng-model="question.answer" class="button button-block button-small" ng-class="setClass(question,3)" ng-click="submitEnable(question)">{{question.choice_3}}</button>
+        <button grouped-radio="4" ng-model="question.answer" class="button button-block button-small" ng-class="setClass(question,4)" ng-click="submitEnable(question)">{{question.choice_4}}</button>
+        <button grouped-radio="5" ng-model="question.answer" class="button button-block button-small" ng-class="setClass(question,5)" ng-click="submitEnable(question)">{{question.choice_5}}</button>
+      </div>
+      <div class="button-bar">
+        <button class="button button-block" ng-click="submit(question, $index)" ng-disabled="question.disable">Submit</button>
+        <button class="button button-block" ng-click="next(question, $index)" ng-disabled="!question.attempted">Next &gt;</button>
+      </div>
+    </div>
+    <div class="card" ng-if="quiz.over">
+      <div class="item">
+        Your score is {{quiz.score}}/{{questions.length}}
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
